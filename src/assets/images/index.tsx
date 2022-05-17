@@ -1,0 +1,1 @@
+export const logomovieapp = require('./logoappmovie.png');
