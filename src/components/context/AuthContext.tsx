@@ -26,8 +26,6 @@ export const AuthProvider = ({children} : any) => {
     const {Provider} = AuthContext;
     const[state, distpach] = useReducer(authReducer, authInitialStatus);
 
-    
-    
     const verifyStatus = async () => {
         const res: string = await getDataStorage('token');        
         if(!res)
@@ -49,7 +47,7 @@ export const AuthProvider = ({children} : any) => {
                     token: res.data.token
                 }
             });
-            await setDataStorage('token', res.data.token);
+            await setDataStorage('token', res.data.token); // this save token when authenticathed is correct 
         } catch (error) {
             distpach({
                 type: 'error',
