@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { MainStackNavigation } from './src/configs/MainStackNavigation'
-import { AuthProvider } from './src/components/context/AuthContext'
+import { AuthProvider } from './src/components/Context/AuthContext'
 
 const AppSatus = ({children} : any) =>{
     return (<AuthProvider>
@@ -12,7 +12,7 @@ const AppSatus = ({children} : any) =>{
  const App = () => {
   return (
    <NavigationContainer>
-       <AppSatus >
+       <AppSatus>
             <MainStackNavigation />
        </AppSatus>
    </NavigationContainer>
