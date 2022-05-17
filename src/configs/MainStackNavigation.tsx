@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { View } from 'react-native';
+import { Button, View } from 'react-native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { SplashScreen } from '../views/SplashScreen';
 import { LoginScreen } from '../views/LoginScreen';
@@ -20,7 +20,7 @@ const MainStack = createNativeStackNavigator<RootStackParams>();
 
 export const MainStackNavigation = () => {
 
-  const {status} = useContext(AuthContext);
+  const {status, logout} = useContext(AuthContext);
   const {Navigator, Screen} = MainStack;
 
   if(status == 'wait') return <SplashScreen />;
@@ -30,7 +30,13 @@ export const MainStackNavigation = () => {
         {
           status !== 'nologged' ? (
             <>
-              <Screen name='HomeScreen' component={HomeScreen} />
+              <Screen name='HomeScreen' component={HomeScreen} 
+              options={{ title: "Home", headerRight: () => (
+                        <Button
+                        title="LOGOUT"
+                        onPress={ logout }
+                      />
+              ) }} />
               <Screen name='DetailsScreen' component={DetailsScreen} />
               <Screen name='SearchScreen' component={SearchScreen} />
             </>
