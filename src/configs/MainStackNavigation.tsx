@@ -8,7 +8,15 @@ import { DetailsScreen } from '../views/DetailsScreen';
 import { SearchScreen } from '../views/SearchScreen';
 import { AuthContext } from '../components/Context/AuthContext';
 
-const MainStack = createNativeStackNavigator();
+export type RootStackParams = {
+  SplashScreen: undefined, 
+  LoginScreen: undefined,
+  HomeScreen: undefined, 
+  DetailsScreen: {id: number},
+  SearchScreen: {query: string}, 
+}
+
+const MainStack = createNativeStackNavigator<RootStackParams>();
 
 export const MainStackNavigation = () => {
 
