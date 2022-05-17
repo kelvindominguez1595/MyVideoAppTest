@@ -14,7 +14,7 @@ export const MainStackNavigation = () => {
   const {Navigator, Screen} = MainStack;
   return (
     <Navigator>
-        <Screen name='HomeScreen' component={SplashScreen} />
+        <Screen name='SplashScreen' component={SplashScreen} />
         <Screen name='LoginScreen' component={LoginScreen} />
         <Screen name='HomeScreen' component={HomeScreen} />
         <Screen name='DetailsScreen' component={DetailsScreen} />

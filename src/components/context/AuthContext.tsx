@@ -1,4 +1,7 @@
-import React, { createContext } from 'react'
+import React, { createContext, useReducer } from 'react'
+import { getDataStorage, removeDataStorage, setDataStorage } from '../../configs/AsyncStorageFunctions';
+import { apiLogin } from '../../configs/Services';
+import { DataResponseLogin, SendLogin } from '../../interfaces/LoginInterface';
 import { authReducer, AuthStatus } from "./AuthReducer";
 
 type AuthContextProps = {
@@ -10,10 +13,16 @@ type AuthContextProps = {
     verifyStatus: () => void;
     deleteMessage: () => void;
 }
+
+const authInitialStatus: AuthStatus = {
+    status: 'wait',
+    token: null,
+    messageError: ''
+}
  
 export const AuthContext = createContext({} as AuthContextProps);
 
-export const AuthContext = ({childre} : any) => {
+export const AuthProvider = ({children} : any) => {
     const {Provider} = AuthContext;
     const[state, distpach] = useReducer(authReducer, authInitialStatus);
 
@@ -33,7 +42,7 @@ export const AuthContext = ({childre} : any) => {
     
     const login = async ({email, password}: SendLogin) => {     
         try {
-            const res = await loginApi.post<DataResponseLogin>('/login',{ email, password,});
+            const res = await apiLogin.post<DataResponseLogin>('/login',{ email, password,});
             distpach({
                 type: 'login',
                 payload: {

@@ -1,11 +1,22 @@
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { MainStackNavigation } from './src/configs/MainStackNavigation'
+import { AuthProvider } from './src/components/context/AuthContext'
 
-export const App = () => {
+const AppSatus = ({children} : any) =>{
+    return (<AuthProvider>
+        {children}
+    </AuthProvider>)
+}
+
+ const App = () => {
   return (
    <NavigationContainer>
-       <MainStackNavigation />
+       <AppSatus >
+            <MainStackNavigation />
+       </AppSatus>
    </NavigationContainer>
   )
 }
+
+export default App;
