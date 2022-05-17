@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { searchAPi } from "../configs/ServicesAPIS";
-import { SearchMovies, SearchResult } from "../interfaces/SearchInterface";
+import { searchAPI } from "../configs/Services";
+import { SearchMovies, SearchResult, } from "../interfaces/SearchInterface";
 
 
 export const useSearchMovies = (query: string) => {
@@ -9,7 +9,7 @@ export const useSearchMovies = (query: string) => {
     const [searchtxt, setsearchtxt] = useState('');
 
     const getDataMovie = async () => {
-        const {data} = await searchAPi.get<SearchMovies>(`/movie?query=${query}`);
+        const {data} = await searchAPI.get<SearchMovies>(`/movie?query=${query}`);
 
         setdataMovies(data.results);
         setsearchtxt(query);

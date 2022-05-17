@@ -1,8 +1,13 @@
 import axios from "axios";
-import { LOGIN_API, MOVIE_API } from "./urls";
+import { LOGIN_API, MOVIE_API, MOVIE_FILTER_API } from "./urls";
 
 export const apiLogin = axios.create({baseURL: LOGIN_API});
 export const moviesAPI = axios.create({baseURL: MOVIE_API, params: {
+    api_key: 'c3a750246625612dad2141aa02c6da2a',
+    language: 'en-EN'
+}});
+
+export const searchAPI = axios.create({baseURL: MOVIE_FILTER_API, params: {
     api_key: 'c3a750246625612dad2141aa02c6da2a',
     language: 'en-EN'
 }});
