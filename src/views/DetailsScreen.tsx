@@ -8,6 +8,7 @@ import { GlobalStyles } from '../assets/styles/GlobalStyles';
 
 import { CardsContens } from '../components/cardsMovies/CardsContens';
 import { GenresContent } from '../components/cardsMovies/GenresContent';
+import { useRecomendationsMovie } from '../UserFormContent/useRecomendations';
 
 interface Props extends NativeStackScreenProps<RootStackParams, 'DetailsScreen'>{};
 
@@ -15,7 +16,8 @@ export const DetailsScreen = ({route, navigation} : Props) => {
   const params = route.params;
   const { loading, dataMovies} = useMovieDetails(params.id);
 
- 
+  const {loadingRecoment, recomendsMovies } = useRecomendationsMovie(params.id);
+
   useEffect(() => {
     navigation.setOptions({
       title: dataMovies?.title
@@ -55,6 +57,23 @@ export const DetailsScreen = ({route, navigation} : Props) => {
         </>)}
         <Text style={[styles.spacetext,GlobalStyles.subTitles]}>Suggested</Text>
     
+      <View>
+          { loadingRecoment ? (<ActivityIndicator size="large" />) : (
+            <>
+                <FlatList    
+                    horizontal={true}    
+                    data={recomendsMovies}
+                    renderItem={({item}: any) => (
+                      <CardsContens 
+                        horizontal={true}
+                        result={item}
+                      />
+                    )}
+                    keyExtractor={(item) => item.id.toString()}
+                  />
+            </>
+          ) }
+        </View>
 
       </ScrollView>
 
