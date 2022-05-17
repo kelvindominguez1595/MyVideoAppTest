@@ -7,6 +7,7 @@ import { IMAGE_MOVIE } from '../configs/urls';
 import { GlobalStyles } from '../assets/styles/GlobalStyles';
 
 import { CardsContens } from '../components/cardsMovies/CardsContens';
+import { GenresContent } from '../components/cardsMovies/GenresContent';
 
 interface Props extends NativeStackScreenProps<RootStackParams, 'DetailsScreen'>{};
 
@@ -44,7 +45,13 @@ export const DetailsScreen = ({route, navigation} : Props) => {
             <Text>{dataMovies?.vote_average}</Text>
         </View> 
         <Text style={GlobalStyles.subTitles}>Genres: </Text>
- 
+        <View style={[styles.rowContainer]}>
+            {
+              dataMovies?.genres.map((item) => (
+                <GenresContent key={item.id.toString()} result={item} />
+                ))
+              }
+        </View>
         </>)}
         <Text style={[styles.spacetext,GlobalStyles.subTitles]}>Suggested</Text>
     
